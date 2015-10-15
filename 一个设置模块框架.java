@@ -142,6 +142,6 @@ public class Config {
       String key = iter.next();
       Object value = json.get(key);
       Option option = getMap().get(key);
-      option.write(classObject); // here classObject is Config
+      option.write(classObject); // here classObject is an instance of Config
     }
   }
