@@ -89,7 +89,8 @@ public class Config {
   Map<String, Option> optionsMap;
 
   //each field's setters and gettes, like
-  public void setFieldBoolean(Context context, boolean fieldBoolean, OnConfigChangedListener listener) {
+  public void setFieldBoolean(Context context, boolean fieldBoolean, 
+                                      OnConfigChangedListener listener) {
     //todo...
   }
 
