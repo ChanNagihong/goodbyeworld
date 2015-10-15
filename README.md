@@ -1,7 +1,10 @@
 > 首先，每个Option对应每一项设置
-       读取设置值 Options.read()
-       更改设置值 Options.write()
- 然后将所有设置放到一个Map<String, Options>中管理
+       
+>       读取设置值 Options.read()
+
+>       更改设置值 Options.write()
+
+> 然后将所有设置放到一个Map<String, Options>中管理
  
 > 优点：
 
