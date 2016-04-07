@@ -88,11 +88,11 @@ private LoadedApk getPackageInfo(ApplicationInfo aInfo, CompatibilityInfo compat
 }
 ```
 
-##由此可见，可有两个方案
-###激进方案
-####通过将LoadedApk放进缓存的map中，自然会返回ref
-###保守方案
-####通过new LoadedApk，就能得到ClassLoader,
+###由此可见，可有两个方案
+*激进方案
+通过将LoadedApk放进缓存的map中，自然会返回ref
+*保守方案
+通过new LoadedApk，就能得到ClassLoader,
 ```Java
 java.lang.ClassLoader cl = r.packageInfo.getClassLoader();
 ```
