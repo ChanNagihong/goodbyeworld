@@ -59,7 +59,6 @@ private LoadedApk getPackageInfo(ApplicationInfo aInfo, CompatibilityInfo compat
         final boolean differentUser = (UserHandle.myUserId() != UserHandle.getUserId(aInfo.uid));
         synchronized (mResourcesManager) {
         // 尝试获取缓存信息
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!激进方案
         WeakReference<LoadedApk> ref;
         if (differentUser) {
             // Caching not supported across users
@@ -76,7 +75,6 @@ private LoadedApk getPackageInfo(ApplicationInfo aInfo, CompatibilityInfo compat
         if (packageInfo == null || (packageInfo.mResources != null
                 && !packageInfo.mResources.getAssets().isUpToDate())) {
                 // 缓存没有命中，直接new
-                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!保守方案
             packageInfo =
                 new LoadedApk(this, aInfo, compatInfo, baseLoader,
                         securityViolation, includeCode &&
@@ -90,7 +88,7 @@ private LoadedApk getPackageInfo(ApplicationInfo aInfo, CompatibilityInfo compat
 
 ###由此可见，可有两个方案
 #####激进方案
-通过将LoadedApk放进缓存的map中，是的在activity实例化的时候，packageInfo能够正常运作，返回插件的LoadedApk，然后得到插件的classLoader，从而能够将插件的类加载到JVM中，JVM正常反射就能new Activity对象。
+通过将LoadedApk放进缓存的map中，是的在activity实例化的时候，getPackageInfo能够正常运作，返回插件的LoadedApk，然后得到插件的classLoader，从而能够将插件的类加载到JVM中，JVM正常反射就能new Activity对象。
 #####保守方案
 通过将插件中的类写进主App的classLoader中，使用实例化activity的时候就算传入主App的classLoader也能将插件中的类加载进JVM，从而JVM能够通过反射new Activity对象。
 ```Java
