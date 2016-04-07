@@ -420,7 +420,7 @@ public ClassLoader getClassLoader() {
 }
 ```
 这里有两个ClassLoader，
-一个是系统的，一个是主App的
+一个是系统的，一个是主App的。
 getSystemClassLoader()，系统级别的classLoader，不是不能加载未安装的类，是牵涉的太多了。
 一只鸡，一头牛，能杀其一就可以通关，你挑哪个？
 所以，目标是ApplicationLoaders.getDefault().getClassLoader();
